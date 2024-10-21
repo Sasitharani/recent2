@@ -1,0 +1,49 @@
+   let [preview, setPreview] = useState("/assets/no-img.png");
+
+
+           <div className="flex items-center space-x-4">
+          <input
+                type="file"
+                name="pdImg-input"
+                id="file-input"
+                className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none  
+  file:bg-gray-50 file:border-0
+  file:me-4
+  file:py-3 file:px-4 
+  "
+              />
+              <img
+                className="w-[120px] shadow-lg border object-cover object-top"
+                src={preview}
+                alt=""
+              />
+          </div>
+
+  
+///////////////////////////////Image Preview///////////////////////////////////////////
+  let imagePreview = (event) => {
+    console.log("clicked")
+    const file=event.target.files[0]
+    if (
+      file.type == "image/webp" ||
+      file.type == "image/png" ||
+      file.type == "image/jpg" ||
+      file.type == "image/jpeg" ||
+      file.type == "image/svg" || 
+      file.type == "image/svg+xml" 
+      
+    ) {
+      //console.log(file.name);
+      let previewImage = URL.createObjectURL(file);
+      console.log(previewImage);
+      setPreview(previewImage);
+    }
+    else{
+      setPreview("/assets/no-img.png")
+      toast.error("Please select a valid image file (PNG, JPG, JPEG, WEBP, SVG).")
+    }
+ };
+
+
+
+
